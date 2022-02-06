@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { Document, Model, model, ObjectId, Schema } from "mongoose";
 import nanoid from "nanoid";
 
 const shortUrlSchema = new Schema({
@@ -17,8 +17,21 @@ const shortUrlSchema = new Schema({
     required: true,
     default: 0,
   },
+  createdBy: {
+    type: Schema.Types.ObjectId,
+    required: true,
+  },
 });
 
-const ShortUrl = model("shortUrl", shortUrlSchema);
+const ShortUrl: Model<ShortUrlDocument> = model("shortUrl", shortUrlSchema);
 
 export default ShortUrl;
+
+interface ShortUrlModel {
+  full: string;
+  short: string;
+  clicks: number;
+  createdBy: ObjectId;
+}
+
+interface ShortUrlDocument extends ShortUrlModel, Document {}
