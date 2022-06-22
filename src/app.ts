@@ -26,6 +26,7 @@ app.get("/:shortId", async (req, res, next) => {
     return next();
   }
   urlDoc.clicks += 1;
+  if (req.query.refer_method === "qr") urlDoc.qr_clicks += 1;
   await urlDoc.save();
   res.redirect(ensureHttp(urlDoc.full));
 });

@@ -17,6 +17,11 @@ const shortUrlSchema = new Schema({
     required: true,
     default: 0,
   },
+  qr_clicks: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
   createdBy: {
     type: Schema.Types.ObjectId,
     required: true,
@@ -31,6 +36,7 @@ interface ShortUrlModel {
   full: string;
   short: string;
   clicks: number;
+  qr_clicks: number;
   createdBy: ObjectId;
 }
 
